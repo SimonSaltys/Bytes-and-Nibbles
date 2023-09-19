@@ -1,0 +1,50 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table customer_data {
+Name
+customer_id (primary)
+Address(string)
+Ship_To_Address (string)
+Bill_To_Address (string)
+Credit_Card (string)
+}
+
+Table customer_orders {
+customer_id (foreign key)
+shipment_order_num (string)
+}
+
+
+Table catalog {
+SKU (primary)
+Item_Name (string)
+Item_Description (string)
+Price (double)
+Available_quantity (int)
+flavor (string enum)
+country_of_origin (string enum)
+}
+
+Table subscription { 
+customer_id (string)
+active_customers (string)
+start_date (date)
+renewal_date (date)
+}
+
+Table shipment { 
+shipment_order_num (string)
+order_status (string)
+shipment_status (string)
+shipment_date (date)
+Ship_To_Address (foreign key)
+
+}
+
+Table returns {
+  shipment_order_num (string)
+  RMA_start (date)
+  received_date (date)
+  received_status (bool)
+}
