@@ -42,7 +42,7 @@ INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_c
 
 
 --Inserting for Vendors
-INSERT INTO user_account (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
+INSERT INTO vendor_account (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
 ('vend001', 'N', 'N', 'Y', 'vend001@example.com', 'passv001', 'Keith', 'Adams'),
 ('vend002', 'N', 'N', 'Y', 'vend002@example.com', 'passv002', 'Linda', 'Baker'),
 ('vend003', 'N', 'N', 'Y', 'vend003@example.com', 'passv003', 'Mike', 'Clark'),
@@ -55,7 +55,7 @@ INSERT INTO user_account (user_id, is_customer, is_admin, is_vendor, email, pass
 ('vend010', 'N', 'N', 'Y', 'vend010@example.com', 'passv010', 'Tina', 'Jones');
 
 --Insert the Users that are vendors into the Vendors table
-INSERT INTO vendor_account (user_id, location, billing_info) VALUES
+INSERT INTO user_account (user_id, location, billing_info) VALUES
 ('vend001', '123 Business Rd, Commerce City, StateA', 'Billing Acct: 001-ABC-123'),
 ('vend002', '456 Trade Ave, Market Town, StateB', 'Billing Acct: 002-DEF-456'),
 ('vend003', '789 Supply St, Vendorville, StateC', 'Billing Acct: 003-GHI-789'),
