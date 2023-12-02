@@ -2,9 +2,9 @@
 -- CS 325 - Fall 2023
 -- 12/01/2023
 
-drop table user cascade constraints;
+drop table user_account cascade constraints;
 
-create table user 
+create table user_account
 (user_id         varchar2(10),
  is_customer     char(1),
  is_admin        char(1),
@@ -22,9 +22,9 @@ create table user
 --     the table keeps track of the users email, password, first and last name.
 
 
-drop table customer cascade constraints;
+drop table customer_account cascade constraints;
 
-create table customer
+create table customer_account
 (user_id         varchar2(10),
  phone_number    varchar2(15),
  address         varchar2(30),
@@ -34,7 +34,7 @@ create table customer
  country         varchar2(15),
  credit_card     integer,
  primary key     (user_id),
- foreign key     (user_id) references user (user_id)
+ foreign key     (user_id) references user_account (user_id)
 );
 
 --********
@@ -42,27 +42,27 @@ create table customer
 --       the table holds credit card informationa and address for each customer.
 
 
-drop table admin cascade constraints;
+drop table admin_account cascade constraints;
 
-create table admin
+create table admin_account
 (user_id         varchar2(10),
  is_admin        char(1),
  primary key     (user_id),
- foreign key     (user_id) references user (user_id)
+ foreign key     (user_id) references user_account (user_id)
 );
 
 
 --********
 -- Table admin allows us to see if the user is an admin or not
 
-drop table vendor cascade constraints;
+drop table vendor_account cascade constraints;
 
-create table vendor
+create table vendor_account
 (user_id         varchar2(10),
  location        varchar2(40),
  billing_info    varchar2(40),
  primary key     (user_id),
- foreign key     (user_id) references user (user_id)
+ foreign key     (user_id) references user_account (user_id)
 );
 
 --*******
@@ -79,19 +79,19 @@ create table subscription
  start_time        varchar2(40),
  billing_info      varchar2(40),
  primary key       (subscription_id),
- foreign key       (user_id) references user (user_id)
+ foreign key       (user_id) references user_account (user_id)
 );
 
 --*******
 -- Table subscription has the subscription ID which tells if the customer
 --         is currently subscribed to Bytes-N-Nibbles, when theysubscribed, 
 --         and current billing info 
- 
 
 
-drop table order cascade constraints;
 
-create table order
+drop table customer_order cascade constraints;
+
+create table customer_order
 (order_id_num       varchar2(10),
  user_id            varchar2(10),
  date_received      date,
@@ -99,8 +99,8 @@ create table order
  item_quantity      integer,
  item_id_num        varchar2(10),
  discount           integer,
- primary key        (order_id_num)
- foreign key       (user_id) references user (user_id)
+ primary key        (order_id_num),
+ foreign key        (user_id) references user_account (user_id)
 );
 
 
