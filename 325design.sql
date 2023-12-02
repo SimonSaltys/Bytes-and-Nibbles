@@ -82,7 +82,7 @@ create table subscription
 );
 
 --*******
-–- Table subscription has the subscription ID which tells if the customer 
+-- Table subscription has the subscription ID which tells if the customer
 --         is currently subscribed to Bytes-N-Nibbles, when theysubscribed, 
 --         and current billing info 
  
@@ -102,7 +102,7 @@ create table order
 
 
 --*******
-–- Tables order tracks orders placed by customers by keeping record of order placed, 
+-- Tables order tracks orders placed by customers by keeping record of order placed,
 --             order total, and if there are any discounts for the customer
 
 drop table treat_catalog cascade constraints;
@@ -118,7 +118,7 @@ create table treat_catalog
 );
 
 --*******
-–- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
+-- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
 --             their unique description, price, and quantity currently available
 
 drop table treat_type cascade constraints;
@@ -144,7 +144,7 @@ create table treat_ingredients
 );
 
 --*******
--– Table treat_ingredients holds the description and item ID number 
+-- Table treat_ingredients holds the description and item ID number
 --            of all treats currently being sold by Bytes-N-Nibbles
 
 

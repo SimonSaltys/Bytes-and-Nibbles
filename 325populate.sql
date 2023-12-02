@@ -1,6 +1,5 @@
 --TODO BEFORE INSERTING DELETE ALL ROWS FROM PREVIOUS, EITHER DROP OR DELETE.
 
-
 --Inserting for Customers
 INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
 ('cust001', 'Y', 'N', 'N', 'cust001@example.com', 'pass001', 'Alice', 'Brown'),
