@@ -1,4 +1,18 @@
---TODO BEFORE INSERTING DELETE ALL ROWS FROM PREVIOUS, EITHER DROP OR DELETE.
+-- Names: Natalie Oulman, Simon Saltikov, Shawn Zereh, Aidan Sevillia, Brian Pinkernell, Griffin Jarrell-Desch
+-- CS 325 - Fall 2023
+-- 12/01/2023
+
+DELETE FROM order;
+DELETE FROM subscription;
+
+DELETE FROM customer;
+DELETE FROM vendor;
+DELETE FROM admin;
+DELETE FROM user;
+
+DELETE FROM treat_ingredients;
+DELETE FROM treat_type;
+DELETE FROM treat_catalog;
 
 --Inserting for Customers
 INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
@@ -80,3 +94,87 @@ INSERT INTO admin (user_id, is_admin) VALUES
 ('admin008', 'Y'),
 ('admin009', 'Y'),
 ('admin010', 'Y');
+
+--Inserting some subscriptions
+INSERT INTO subscription (subscription_id, user_id, start_time, billing_info) VALUES
+('sub001', 'cust001', '2023-12-01 09:00:00', 'Billing Info 1'),
+('sub002', 'cust002', '2023-12-02 10:30:00', 'Billing Info 2'),
+('sub003', 'cust003', '2023-12-03 11:15:00', 'Billing Info 3'),
+('sub004', 'cust004', '2023-12-04 08:45:00', 'Billing Info 4'),
+('sub005', 'cust005', '2023-12-05 14:00:00', 'Billing Info 5'),
+('sub006', 'cust006', '2023-12-06 16:30:00', 'Billing Info 6'),
+('sub007', 'cust007', '2023-12-07 13:20:00', 'Billing Info 7'),
+('sub008', 'cust008', '2023-12-08 15:10:00', 'Billing Info 8'),
+('sub009', 'cust009', '2023-12-09 17:00:00', 'Billing Info 9'),
+('sub010', 'cust010', '2023-12-10 18:45:00', 'Billing Info 10');
+
+--Inserting some treats
+INSERT INTO treat_catalog (item_id_num, item_name, item_description, quantity_on_hand, price, quantity_sold) VALUES
+('item0001', 'Chocolate Bliss', 'Rich and creamy dark chocolate bars.', 100, 2.99, 50),
+('item0002', 'Sour Jummy Worms', 'Colorful gummy worms with a tangy sour coating.', 150, 1.50, 75),
+('item0003', 'Caramel Delight', 'Soft, chewy caramels with a hint of sea salt.', 80, 3.25, 30),
+('item0004', 'Minty Fresh Mints', 'Refreshing peppermint candies that soothe the throat.', 200, 1.00, 120),
+('item0005', 'Crunchy Almond Cookies', 'Homemade cookies with crunchy almonds and a hint of vanilla.', 60, 4.50, 40),
+('item0006', 'Fruit Medley Gummies', 'Assorted fruit-flavored gummies made with real fruit juice.', 120, 2.00, 60),
+('item0007', 'Lemon Drops', 'Hard candies with a sweet and tangy lemon flavor.', 90, 1.20, 45),
+'item0008', 'Spicy Chili Chips', 'Crunchy potato chips with a bold and spicy chili seasoning.', 110, 2.75, 70),
+('item0009', 'Hazelnut Truffle', 'Decadent truffles with a smooth hazelnut filling.', 50, 5.00, 20),
+('item0010', 'Peanut Brittle', 'Crunchy, buttery peanut brittle with a caramelized sugar coating.', 70, 3.75, 35);
+('item0011', 'Vanilla Fudge', 'Creamy vanilla fudge with a smooth, rich texture.', 85, 3.50, 40),
+('item0012', 'Peanut Butter Cups', 'Delicious cups of milk chocolate filled with creamy peanut butter.', 100, 2.25, 50),
+('item0013', 'Toffee Crunch', 'Buttery toffee with a delightful crunchy texture.', 90, 3.00, 45),
+('item0014', 'Jelly Beans', 'Assorted jelly beans in a variety of fruit flavors.', 120, 1.75, 60),
+('item0015', 'Salted Pretzels', 'Crunchy pretzels with a light salt coating.', 150, 2.50, 70),
+('item0016', 'Coconut Macaroons', 'Chewy macaroons made with real coconut flakes.', 70, 4.00, 30),
+('item0017', 'Marshmallow Twists', 'Soft, fluffy marshmallows with a twist of vanilla.', 110, 2.00, 55),
+('item0018', 'Chocolate Brownies', 'Rich, fudgy brownies with chunks of real chocolate.', 60, 4.50, 35),
+('item0019', 'Candy Corn', 'Classic candy corn with a creamy texture and sweet flavor.', 130, 1.50, 65),
+('item0020', 'Mixed Nuts', 'A savory blend of roasted nuts including almonds, cashews, and pecans.', 100, 3.25, 50);
+
+--Inserting treat type
+INSERT INTO treat_type (item_id_num, treat_type) VALUES
+('item0001', 'Chocolate'),
+('item0002', 'Gummy Candy'),
+('item0003', 'Caramel Treat'),
+('item0004', 'Hard Candy'),
+('item0005', 'Baked Good'),
+('item0006', 'Gummy Candy'),
+('item0007', 'Hard Candy'),
+('item0008', 'Savory Snack'),
+('item0009', 'Chocolate'),
+('item0010', 'Caramel Treat');
+('item0011', 'Caramel Treat'),
+('item0012', 'Chocolate'),
+('item0013', 'Caramel Treat'),
+('item0014', 'Gummy Candy'),
+('item0015', 'Savory Snack'),
+('item0016', 'Baked Good'),
+('item0017', 'Gummy Candy'),
+('item0018', 'Chocolate'),
+('item0019', 'Hard Candy'),
+('item0020', 'Savory Snack');
+
+--inserting treats
+INSERT INTO treat_ingredients (item_id_num, treat_ingredients) VALUES
+('item0001', 'Cocoa mass, Sugar, Cocoa butter'),
+('item0002', 'Gelatin, Citric acid, Artificial flavors'),
+('item0003', 'Sugar, Corn syrup, Butter'),
+('item0004', 'Sugar, Peppermint oil, Cornstarch'),
+('item0005', 'Flour, Almonds, Butter'),
+('item0006', 'Sugar, Gelatin, Fruit juice'),
+('item0007', 'Sugar, Lemon oil, Citric acid'),
+('item0008', 'Potatoes, Sunflower oil, Chili seasoning'),
+('item0009', 'Cocoa mass, Sugar, Hazelnuts'),
+('item0010', 'Sugar, Peanuts, Corn syrup'),
+('item0011', 'Sugar, Butter, Vanilla extract'),
+('item0012', 'Milk chocolate, Peanut butter, Salt'),
+('item0013', 'Sugar, Butter, Toffee bits'),
+('item0014', 'Sugar, Corn syrup, Food coloring'),
+('item0015', 'Wheat flour, Salt, Yeast'),
+('item0016', 'Coconut, Egg whites, Sugar'),
+('item0017', 'Sugar, Corn syrup, Gelatin'),
+('item0018', 'Sugar, Cocoa powder, Flour'),
+('item0019', 'Sugar, Corn syrup, Honey'),
+('item0020', 'Almonds, Cashews, Salt');
+
+

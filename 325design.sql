@@ -75,6 +75,7 @@ drop table subscription cascade constraints;
 
 create table subscription
 (subscription_id   varchar2(10),
+ user_id           varchar2(10),
  start_time        varchar2(40),
  billing_info      varchar2(40),
  primary key       (subscription_id),
@@ -91,13 +92,15 @@ create table subscription
 drop table order cascade constraints;
 
 create table order
-(order_id_num           varchar2(10),
- date_recieved      date,
+(order_id_num       varchar2(10),
+ user_id            varchar2(10),
+ date_received      date,
  total_price        decimal(8,2),
  item_quantity      integer,
  item_id_num        varchar2(10),
  discount           integer,
  primary key        (order_id_num)
+ foreign key       (user_id) references user (user_id)
 );
 
 
@@ -109,7 +112,7 @@ drop table treat_catalog cascade constraints;
 
 create table treat_catalog
 (item_id_num        varchar2(10),
- item_name,         varchar2(30),
+ item_name          varchar2(30),
  item_description   varchar2(300),
  quantity_on_hand   integer,
  price              decimal(8,2),
