@@ -2,20 +2,20 @@
 -- CS 325 - Fall 2023
 -- 12/01/2023
 
-DELETE FROM order;
+DELETE FROM customer_order;
 DELETE FROM subscription;
 
-DELETE FROM customer;
-DELETE FROM vendor;
-DELETE FROM admin;
-DELETE FROM user;
+DELETE FROM customer_account;
+DELETE FROM vendor_account;
+DELETE FROM admin_account;
+DELETE FROM user_account;
 
 DELETE FROM treat_ingredients;
 DELETE FROM treat_type;
 DELETE FROM treat_catalog;
 
 --Inserting for Customers
-INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
+INSERT INTO user_account (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
 ('cust001', 'Y', 'N', 'N', 'cust001@example.com', 'pass001', 'Alice', 'Brown'),
 ('cust002', 'Y', 'N', 'N', 'cust002@example.com', 'pass002', 'Bob', 'Smith'),
 ('cust003', 'Y', 'N', 'N', 'cust003@example.com', 'pass003', 'Carol', 'Jones'),
@@ -28,7 +28,7 @@ INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fn
 ('cust010', 'Y', 'N', 'N', 'cust010@example.com', 'pass010', 'Jack', 'White');
 
 --Insert the Users that are customers into the Customer table
-INSERT INTO customer (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
+INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
 ('cust001', '555-1001', '101 Main St', 'Springfield', 'StateA', 10001, 'USA', 1111222233334444),
 ('cust002', '555-1002', '102 Oak St', 'Greenwood', 'StateB', 10002, 'Canada', 2222333344445555),
 ('cust003', '555-1003', '103 Pine St', 'Lakewood', 'StateC', 10003, 'USA', 3333444455556666),
@@ -42,7 +42,7 @@ INSERT INTO customer (user_id, phone_number, address, city, state, zip_code, cou
 
 
 --Inserting for Vendors
-INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
+INSERT INTO user_account (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
 ('vend001', 'N', 'N', 'Y', 'vend001@example.com', 'passv001', 'Keith', 'Adams'),
 ('vend002', 'N', 'N', 'Y', 'vend002@example.com', 'passv002', 'Linda', 'Baker'),
 ('vend003', 'N', 'N', 'Y', 'vend003@example.com', 'passv003', 'Mike', 'Clark'),
@@ -55,7 +55,7 @@ INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fn
 ('vend010', 'N', 'N', 'Y', 'vend010@example.com', 'passv010', 'Tina', 'Jones');
 
 --Insert the Users that are vendors into the Vendors table
-INSERT INTO vendor (user_id, location, billing_info) VALUES
+INSERT INTO vendor_account (user_id, location, billing_info) VALUES
 ('vend001', '123 Business Rd, Commerce City, StateA', 'Billing Acct: 001-ABC-123'),
 ('vend002', '456 Trade Ave, Market Town, StateB', 'Billing Acct: 002-DEF-456'),
 ('vend003', '789 Supply St, Vendorville, StateC', 'Billing Acct: 003-GHI-789'),
@@ -70,7 +70,7 @@ INSERT INTO vendor (user_id, location, billing_info) VALUES
 
 
 --Inserting for Admins
-INSERT INTO user (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
+INSERT INTO admin_account (user_id, is_customer, is_admin, is_vendor, email, password, fname, lname) VALUES
 ('admin001', 'N', 'Y', 'N', 'admin001@example.com', 'passa001', 'Ursula', 'King'),
 ('admin002', 'N', 'Y', 'N', 'admin002@example.com', 'passa002', 'Victor', 'Lopez'),
 ('admin003', 'N', 'Y', 'N', 'admin003@example.com', 'passa003', 'Wendy', 'Morgan'),
