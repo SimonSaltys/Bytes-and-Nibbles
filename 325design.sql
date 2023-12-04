@@ -32,7 +32,7 @@ create table customer_account
  state           varchar2(20),
  zip_code        varchar2(10),
  country         varchar2(15),
- credit_card     integer,
+ credit_card     varchar2(20),
  primary key     (user_id),
  foreign key     (user_id) references user_account (user_id)
 );
