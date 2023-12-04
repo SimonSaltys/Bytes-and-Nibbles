@@ -30,7 +30,7 @@ create table customer_account
  address         varchar2(30),
  city            varchar2(20),
  state           varchar2(20),
- zip_code        integer,
+ zip_code        varchar2(10),
  country         varchar2(15),
  credit_card     integer,
  primary key     (user_id),
