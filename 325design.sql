@@ -59,8 +59,8 @@ drop table vendor_account cascade constraints;
 
 create table vendor_account
 (user_id         varchar2(10),
- location        varchar2(40),
- billing_info    varchar2(40),
+ location        varchar2(100),
+ billing_info    varchar2(100),
  primary key     (user_id),
  foreign key     (user_id) references user_account (user_id)
 );

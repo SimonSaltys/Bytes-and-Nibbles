@@ -30,7 +30,7 @@ PROMPT subscription
 SELECT * FROM subscription;
   
 PROMPT order
-SELECT * FROM order WHERE total_price > 50.00;
+SELECT * FROM customer_order WHERE total_price > 50.00;
 
 PROMPT treat catalog
 SELECT item_id_num, item_name, quantity_on_hand FROM treat_catalog WHERE quantity_on_hand > 0;
