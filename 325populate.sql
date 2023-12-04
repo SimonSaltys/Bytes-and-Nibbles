@@ -78,25 +78,25 @@ INSERT INTO user_account (user_id, is_customer, is_admin, is_vendor, email, pass
 
 --Insert the Users that are customers into the Customer table
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust001', '555-1001', '101 Main St', 'Springfield', 'StateA', 10001, 'USA', 1111222233334444);
+('cust001', '555-1001', '101 Main St', 'Springfield', 'StateA', '10001', 'USA', '1111222233334444');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust002', '555-1002', '102 Oak St', 'Greenwood', 'StateB', 10002, 'Canada', 2222333344445555);
+('cust002', '555-1002', '102 Oak St', 'Greenwood', 'StateB', '10002', 'Canada', '2222333344445555');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust003', '555-1003', '103 Pine St', 'Lakewood', 'StateC', 10003, 'USA', 3333444455556666);
+('cust003', '555-1003', '103 Pine St', 'Lakewood', 'StateC', '10003', 'USA', '3333444455556666');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust004', '555-1004', '104 Elm St', 'Fairview', 'StateD', 10004, 'UK', 4444555566667777);
+('cust004', '555-1004', '104 Elm St', 'Fairview', 'StateD', '10004', 'UK', '4444555566667777');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust005', '555-1005', '105 Maple St', 'Brookside', 'StateE', 10005, 'USA', 5555666677778888);
+('cust005', '555-1005', '105 Maple St', 'Brookside', 'StateE', '10005', 'USA', '5555666677778888');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust006', '555-1006', '106 Cedar St', 'Riverside', 'StateF', 10006, 'Australia', 6666777788889999);
+('cust006', '555-1006', '106 Cedar St', 'Riverside', 'StateF', '10006', 'Australia', '6666777788889999');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust007', '555-1007', '107 Birch St', 'Cliffton', 'StateG', 10007, 'Canada', 7777888899990000);
+('cust007', '555-1007', '107 Birch St', 'Cliffton', 'StateG', '10007', 'Canada', '7777888899990000');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust008', '555-1008', '108 Walnut St', 'Meadowvale', 'StateH', 10008, 'USA', 8888999900001111);
+('cust008', '555-1008', '108 Walnut St', 'Meadowvale', 'StateH', '10008', 'USA', '8888999900001111');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust009', '555-1009', '109 Cherry St', 'Stonebridge', 'StateI', 10009, 'UK', 9999000011112222);
+('cust009', '555-1009', '109 Cherry St', 'Stonebridge', 'StateI', '10009', 'UK', '9999000011112222');
 INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_code, country, credit_card) VALUES
-('cust010', '555-1010', '110 Chestnut St', 'Westwood', 'StateJ', 10010, 'USA', 0000111122223333);
+('cust010', '555-1010', '110 Chestnut St', 'Westwood', 'StateJ', '10010', 'USA', '0000111122223333');
 
 
 
