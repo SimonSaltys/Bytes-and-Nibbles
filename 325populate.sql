@@ -296,3 +296,24 @@ INSERT INTO treat_ingredients (item_id_num, treat_ingredients) VALUES
 ('item0020', 'Almonds, Cashews, Salt');
 
 
+-- inserting items_in_order 
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord001', 'cust005', 'item0001', 2);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES
+('ord002', 'cust002', 'item0002', 1);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES
+('ord003', 'cust008', 'item0003', 8);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES
+('ord004', 'cust004', 'item0004', 1);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord005', 'cust001', 'item0005', 7);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord006', 'cust007', 'item0006', 3);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord007', 'cust003', 'item0007', 10);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord008', 'cust004', 'item0008', 1);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord009', 'cust005', 'item0009', 6);
+INSERT INTO items_in_order (order_id_num, user_id, item_id_num, item_quantity) VALUES 
+('ord010', 'cust009', 'item0010', 4);
