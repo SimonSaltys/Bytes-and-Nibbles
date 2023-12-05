@@ -1,8 +1,16 @@
 -- Names: Natalie Oulman, Simon Saltikov, Shawn Zereh, Aidan Sevillia, Brian Pinkernell, Griffin Jarrell-Desch
 -- CS 325 - Fall 2023
--- 12/01/2023
+-- 12/04/2023
 
+
+drop table vendor_account cascade constraints;
 drop table user_account cascade constraints;
+drop table customer_account cascade constraints;
+drop table subscription cascade constraints;
+drop table customer_order cascade constraints;
+drop table treat_catalog cascade constraints;
+drop table treat_type cascade constraints;
+drop table treat_ingredients cascade constraints;
 
 create table user_account
 (user_id         varchar2(10),
@@ -18,11 +26,11 @@ create table user_account
 
 --*********
 -- Table user describes keeps track of all users.
---     users can be either customers, admin, or a vendor.
---     the table keeps track of the users email, password, first and last name.
+--     Users can be either customers, admins, or a vendor.
+--     the table keeps track of the user's email, password, first and last name.
 
 
-drop table customer_account cascade constraints;
+
 
 create table customer_account
 (user_id         varchar2(10),
@@ -39,7 +47,7 @@ create table customer_account
 
 --********
 -- Table customer holds information for all the customers.
---       the table holds credit card informationa and address for each customer.
+--       The table holds credit card information and the address for each customer.
 
 
 drop table admin_account cascade constraints;
@@ -55,7 +63,7 @@ create table admin_account
 --********
 -- Table admin allows us to see if the user is an admin or not
 
-drop table vendor_account cascade constraints;
+
 
 create table vendor_account
 (user_id         varchar2(10),
@@ -71,7 +79,7 @@ create table vendor_account
 --       the vendor sends the customer their treats and charges us for the treats.
 
 
-drop table subscription cascade constraints;
+
 
 create table subscription
 (subscription_id   varchar2(10),
@@ -84,12 +92,12 @@ create table subscription
 
 --*******
 -- Table subscription has the subscription ID which tells if the customer
---         is currently subscribed to Bytes-N-Nibbles, when theysubscribed, 
+--         is currently subscribed to Bytes-N-Nibbles, when they subscribed, 
 --         and current billing info 
 
 
 
-drop table customer_order cascade constraints;
+
 
 create table customer_order
 (order_id_num       varchar2(10),
@@ -121,7 +129,6 @@ create table items_in_order
 -- Tables order tracks orders placed by customers by keeping record of order placed,
 --             order total, and if there are any discounts for the customer
 
-drop table treat_catalog cascade constraints;
 
 create table treat_catalog
 (item_id_num        varchar2(10),
@@ -137,7 +144,7 @@ create table treat_catalog
 -- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
 --             their unique description, price, and quantity currently available
 
-drop table treat_type cascade constraints;
+
 
 create table treat_type
 (item_id_num        varchar2(10),
@@ -150,7 +157,7 @@ create table treat_type
 --Tables treat_type holds the treat type and item ID number of all treats currently being sold by Bytes-N-Nibbles
 
 
-drop table treat_ingredients cascade constraints;
+
 
 create table treat_ingredients
 (item_id_num        varchar2(10),
