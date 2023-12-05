@@ -95,12 +95,25 @@ create table customer_order
 (order_id_num       varchar2(10),
  user_id            varchar2(10),
  date_received      date,
- total_price        decimal(8,2),
- item_quantity      integer,
- item_id_num        varchar2(10),
- discount           integer,
  primary key        (order_id_num),
  foreign key        (user_id) references user_account (user_id)
+);
+
+--*******
+-- Gets around the 1NF constraint by removing the
+-- multivalued attributes in the order (items in order).
+--
+create table items_in_order
+(
+    order_id_num varchar2(10),
+    user_id      varchar2(10),
+    item_id_num  varchar2(10),
+    item_quantity      integer,
+    primary key(order_id_num,user_id,item_id_num),
+
+    foreign key (order_id_num) REFERENCES customer_order(order_id_num),
+    foreign key (user_id) REFERENCES user_account(user_id),
+    foreign key (item_id_num) REFERENCES treat_catalog(item_id_num)
 );
 
 
