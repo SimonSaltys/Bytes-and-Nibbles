@@ -89,9 +89,9 @@ create table subscription
 
 
 
-drop table customer_order cascade constraints;
+drop table orders cascade constraints;
 
-create table customer_order
+create table orders
 (order_id_num       varchar2(10),
  user_id            varchar2(10),
  date_received      date,
@@ -103,10 +103,25 @@ create table customer_order
  foreign key        (user_id) references user_account (user_id)
 );
 
+--*******
+-- Table orders tracks orders placed by customers by keeping record of order placed,
+--             order total, and if there are any discounts for the customer
+
+drop table customer_order cascade constraints;
+
+ create table customer_order
+  (user_id           varchar2(10),
+  order_id_num       varchar2(10),
+  primary key(user_id, order_id_num),
+  FOREIGN KEY(user_id) REFERENCES customer(user_id),
+  FOREIGN KEY(order_id_num) REFERENCES orders(order_id_num)
+  );
 
 --*******
--- Tables order tracks orders placed by customers by keeping record of order placed,
---             order total, and if there are any discounts for the customer
+-- Table customer_order tracks the 'cart' of a user and keeps track of all the items
+--              made in an order. 
+
+
 
 drop table treat_catalog cascade constraints;
 
