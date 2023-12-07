@@ -3,14 +3,19 @@
 -- 12/04/2023
 
 
-drop table vendor_account cascade constraints;
+
 drop table user_account cascade constraints;
-drop table customer_account cascade constraints;
-drop table subscription cascade constraints;
-drop table customer_order cascade constraints;
-drop table treat_catalog cascade constraints;
-drop table treat_type cascade constraints;
-drop table treat_ingredients cascade constraints;
+
+
+
+
+
+
+
+--*********
+-- Table user describes keeps track of all users.
+--     Users can be either customers, admins, or a vendor.
+--     the table keeps track of the user's email, password, first and last name.
 
 create table user_account
 (user_id         varchar2(10),
@@ -24,12 +29,11 @@ create table user_account
  primary key     (user_id)
 );
 
---*********
--- Table user describes keeps track of all users.
---     Users can be either customers, admins, or a vendor.
---     the table keeps track of the user's email, password, first and last name.
+drop table customer_account cascade constraints;
 
-
+--********
+-- Table customer_account holds information for all the customers.
+--       The table holds credit card information and the address for each customer.
 
 
 create table customer_account
@@ -46,8 +50,7 @@ create table customer_account
 );
 
 --********
--- Table customer holds information for all the customers.
---       The table holds credit card information and the address for each customer.
+-- Table admin_account allows us to see if the user is an admin or not
 
 
 drop table admin_account cascade constraints;
@@ -60,10 +63,14 @@ create table admin_account
 );
 
 
---********
--- Table admin allows us to see if the user is an admin or not
+
+--*******
+-- Table vendor holds information about the vendor of the treats.
+--       table vendor holds the billing info and location for the vendor.
+--       the vendor sends the customer their treats and charges us for the treats.
 
 
+drop table vendor_account cascade constraints;
 
 create table vendor_account
 (user_id         varchar2(10),
@@ -73,14 +80,14 @@ create table vendor_account
  foreign key     (user_id) references user_account (user_id)
 );
 
+
 --*******
--- Table vendor holds information about the vendor of the treats.
---       table vendor holds the billing info and location for the vendor.
---       the vendor sends the customer their treats and charges us for the treats.
+-- Table subscription has the subscription ID which tells if the customer
+--         is currently subscribed to Bytes-N-Nibbles, when they subscribed, 
+--         and current billing info 
 
 
-
-
+drop table subscription cascade constraints;
 create table subscription
 (subscription_id   varchar2(10),
  user_id           varchar2(10),
@@ -90,15 +97,13 @@ create table subscription
  foreign key       (user_id) references user_account (user_id)
 );
 
+
+
+
 --*******
--- Table subscription has the subscription ID which tells if the customer
---         is currently subscribed to Bytes-N-Nibbles, when they subscribed, 
---         and current billing info 
-
-
-
-
-
+-- Tables order tracks orders placed by customers by keeping a record of orders placed,
+--             order total, and if there are any discounts for the customer
+drop table customer_order cascade constraints;
 create table customer_order
 (order_id_num       varchar2(10),
  user_id            varchar2(10),
@@ -107,10 +112,54 @@ create table customer_order
  foreign key        (user_id) references user_account (user_id)
 );
 
+
+
+--*******
+-- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
+--             their unique description, price, and quantity currently available
+drop table treat_catalog cascade constraints;
+create table treat_catalog
+(item_id_num        varchar2(10),
+ item_name          varchar2(30),
+ item_description   varchar2(300),
+ quantity_on_hand   integer,
+ price              decimal(8,2),
+ quantity_sold      integer,
+ primary key        (item_id_num)
+);
+
+
+
+
+--*******
+--Tables treat_type holds the treat type and item ID number of all treats currently being sold by Bytes-N-Nibbles
+
+drop table treat_type cascade constraints;
+create table treat_type
+(item_id_num        varchar2(10),
+ treat_type         varchar2(30),
+ primary key        (item_id_num),
+ foreign key        (item_id_num) references treat_catalog
+);
+
+
+
+--*******
+-- Table treat_ingredients holds the description and item ID number
+--            of all treats currently being sold by Bytes-N-Nibbles
+
+drop table treat_ingredients cascade constraints;
+create table treat_ingredients
+(item_id_num        varchar2(10),
+ treat_ingredients  varchar2(1000),
+ primary key        (item_id_num),
+ foreign key        (item_id_num) references treat_catalog
+);
+
 --*******
 -- Gets around the 1NF constraint by removing the
 -- multivalued attributes in the order (items in order).
---
+
 create table items_in_order
 (
     order_id_num varchar2(10),
@@ -123,52 +172,4 @@ create table items_in_order
     foreign key (user_id) REFERENCES user_account(user_id),
     foreign key (item_id_num) REFERENCES treat_catalog(item_id_num)
 );
-
-
---*******
--- Tables order tracks orders placed by customers by keeping record of order placed,
---             order total, and if there are any discounts for the customer
-
-
-create table treat_catalog
-(item_id_num        varchar2(10),
- item_name          varchar2(30),
- item_description   varchar2(300),
- quantity_on_hand   integer,
- price              decimal(8,2),
- quantity_sold      integer,
- primary key        (item_id_num)
-);
-
---*******
--- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
---             their unique description, price, and quantity currently available
-
-
-
-create table treat_type
-(item_id_num        varchar2(10),
- treat_type         varchar2(30),
- primary key        (item_id_num),
- foreign key        (item_id_num) references treat_catalog
-);
-
---*******
---Tables treat_type holds the treat type and item ID number of all treats currently being sold by Bytes-N-Nibbles
-
-
-
-
-create table treat_ingredients
-(item_id_num        varchar2(10),
- treat_ingredients  varchar2(1000),
- primary key        (item_id_num),
- foreign key        (item_id_num) references treat_catalog
-);
-
---*******
--- Table treat_ingredients holds the description and item ID number
---            of all treats currently being sold by Bytes-N-Nibbles
-
-
 
