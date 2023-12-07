@@ -8,10 +8,6 @@ drop table user_account cascade constraints;
 
 
 
-
-
-
-
 --*********
 -- Table user describes keeps track of all users.
 --     Users can be either customers, admins, or a vendor.
@@ -28,6 +24,36 @@ create table user_account
  lname           varchar2(15),
  primary key     (user_id)
 );
+
+
+--*******
+-- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
+--             their unique description, price, and quantity currently available
+drop table treat_catalog cascade constraints;
+create table treat_catalog
+(item_id_num        varchar2(10),
+ item_name          varchar2(30),
+ item_description   varchar2(300),
+ quantity_on_hand   integer,
+ price              decimal(8,2),
+ quantity_sold      integer,
+ primary key        (item_id_num)
+);
+
+
+
+--*******
+-- Tables order tracks orders placed by customers by keeping a record of orders placed,
+--             order total, and if there are any discounts for the customer
+drop table customer_order cascade constraints;
+create table customer_order
+(order_id_num       varchar2(10),
+ user_id            varchar2(10),
+ date_received      date,
+ primary key        (order_id_num),
+ foreign key        (user_id) references user_account (user_id)
+);
+
 
 drop table customer_account cascade constraints;
 
@@ -100,33 +126,11 @@ create table subscription
 
 
 
---*******
--- Tables order tracks orders placed by customers by keeping a record of orders placed,
---             order total, and if there are any discounts for the customer
-drop table customer_order cascade constraints;
-create table customer_order
-(order_id_num       varchar2(10),
- user_id            varchar2(10),
- date_received      date,
- primary key        (order_id_num),
- foreign key        (user_id) references user_account (user_id)
-);
 
 
 
---*******
--- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
---             their unique description, price, and quantity currently available
-drop table treat_catalog cascade constraints;
-create table treat_catalog
-(item_id_num        varchar2(10),
- item_name          varchar2(30),
- item_description   varchar2(300),
- quantity_on_hand   integer,
- price              decimal(8,2),
- quantity_sold      integer,
- primary key        (item_id_num)
-);
+
+
 
 
 
