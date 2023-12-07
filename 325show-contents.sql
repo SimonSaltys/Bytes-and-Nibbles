@@ -1,7 +1,7 @@
 -- Group Name: Bytes and nibbles
 -- Group Members: Griffin Jarrell-Desch, Natalie Oulman, Simon Saltikov, Shawn Zereh, Aidan Sevillia, Brian Pinkernell
 -- Course: CS 325 - Fall 2023
--- Last Modified: 12-03-2023 
+-- Last Modified: 12-06-2023 
 
 SPOOL ON;
 SPOOL 325result-contents.txt
@@ -27,7 +27,7 @@ SELECT * FROM user_account;
 
  
 PROMPT =====
-PROMPT Displaying partial rows from the user table
+PROMPT Displaying partial rows from the user_account table
 PROMPT =====
 
 SELECT user_id, email, password, fname, lname FROM user_account;
@@ -84,7 +84,10 @@ PROMPT =====
 PROMPT Displaying some orders from customer_orders
 PROMPT =====
 
---SELECT * FROM customer_order WHERE total_price > 50.00;
+SELECT *
+FROM customer_order
+WHERE order_id_num = 'ord001'
+OR user_id = 'cust002';
 
 PROMPT =====
 PROMPT Displaying treats where the quantity_on_hand is greater than 70
@@ -112,6 +115,7 @@ SELECT treat_type.item_id_num, treat_type, treat_ingredients
 FROM treat_ingredients, treat_type 
 WHERE treat_ingredients.item_id_num = treat_type.item_id_num 
 AND treat_type.item_id_num = 'item0001';
+
 
 
 
