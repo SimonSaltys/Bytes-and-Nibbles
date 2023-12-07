@@ -99,6 +99,28 @@ INSERT INTO customer_account (user_id, phone_number, address, city, state, zip_c
 ('cust010', '555-1010', '110 Chestnut St', 'Westwood', 'StateJ', '10010', 'USA', '0000111122223333');
 
 
+-- Inserting into the customer_order table
+
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES
+('ord001', 'cust005', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord002', 'cust002', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord003', 'cust008', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord004', 'cust004', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord005', 'cust001', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord006', 'cust007', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord007', 'cust003', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord008', 'cust004', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord009', 'cust005', '2023-12-07 13:20:00');
+INSERT INTO customer_order (order_id_num, user_id, date_received) VALUES 
+('ord010', 'cust009', '2023-12-07 13:20:00');
 
 
 --Insert the Users that are vendors into the Vendors' table
