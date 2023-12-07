@@ -2,17 +2,13 @@
 -- CS 325 - Fall 2023
 -- 12/04/2023
 
-
-
-drop table user_account cascade constraints;
-
-
+set sqlblanklines on
 
 --*********
 -- Table user describes keeps track of all users.
 --     Users can be either customers, admins, or a vendor.
 --     the table keeps track of the user's email, password, first and last name.
-
+drop table user_account cascade constraints;
 create table user_account
 (user_id         varchar2(10),
  is_customer     char(1),
@@ -24,8 +20,6 @@ create table user_account
  lname           varchar2(15),
  primary key     (user_id)
 );
-
-
 --*******
 -- Table treat_catalog tracks the items currently being sold by Bytes-N-Nibbles,
 --             their unique description, price, and quantity currently available
@@ -39,9 +33,6 @@ create table treat_catalog
  quantity_sold      integer,
  primary key        (item_id_num)
 );
-
-
-
 --*******
 -- Tables order tracks orders placed by customers by keeping a record of orders placed,
 --             order total, and if there are any discounts for the customer
@@ -49,19 +40,15 @@ drop table customer_order cascade constraints;
 create table customer_order
 (order_id_num       varchar2(10),
  user_id            varchar2(10),
- date_received      date,
+ date_received      varchar2(40),
  primary key        (order_id_num),
  foreign key        (user_id) references user_account (user_id)
 );
 
-
-drop table customer_account cascade constraints;
-
 --********
 -- Table customer_account holds information for all the customers.
 --       The table holds credit card information and the address for each customer.
-
-
+drop table customer_account cascade constraints;
 create table customer_account
 (user_id         varchar2(10),
  phone_number    varchar2(15),
@@ -77,10 +64,7 @@ create table customer_account
 
 --********
 -- Table admin_account allows us to see if the user is an admin or not
-
-
 drop table admin_account cascade constraints;
-
 create table admin_account
 (user_id         varchar2(10),
  is_admin        char(1),
@@ -88,16 +72,11 @@ create table admin_account
  foreign key     (user_id) references user_account (user_id)
 );
 
-
-
 --*******
 -- Table vendor holds information about the vendor of the treats.
 --       table vendor holds the billing info and location for the vendor.
 --       the vendor sends the customer their treats and charges us for the treats.
-
-
 drop table vendor_account cascade constraints;
-
 create table vendor_account
 (user_id         varchar2(10),
  location        varchar2(100),
@@ -106,13 +85,10 @@ create table vendor_account
  foreign key     (user_id) references user_account (user_id)
 );
 
-
 --*******
 -- Table subscription has the subscription ID which tells if the customer
 --         is currently subscribed to Bytes-N-Nibbles, when they subscribed, 
---         and current billing info 
-
-
+--         and current billing info
 drop table subscription cascade constraints;
 create table subscription
 (subscription_id   varchar2(10),
@@ -122,18 +98,6 @@ create table subscription
  primary key       (subscription_id),
  foreign key       (user_id) references user_account (user_id)
 );
-
-
-
-
-
-
-
-
-
-
-
-
 
 --*******
 --Tables treat_type holds the treat type and item ID number of all treats currently being sold by Bytes-N-Nibbles
@@ -163,7 +127,7 @@ create table treat_ingredients
 --*******
 -- Gets around the 1NF constraint by removing the
 -- multivalued attributes in the order (items in order).
-
+drop table items_in_order cascade constraints;
 create table items_in_order
 (
     order_id_num varchar2(10),
@@ -172,8 +136,8 @@ create table items_in_order
     item_quantity      integer,
     primary key(order_id_num,user_id,item_id_num),
 
-    foreign key (order_id_num) REFERENCES customer_order(order_id_num),
-    foreign key (user_id) REFERENCES user_account(user_id),
-    foreign key (item_id_num) REFERENCES treat_catalog(item_id_num)
+    foreign key (order_id_num) references customer_order(order_id_num),
+    foreign key (user_id) references user_account(user_id),
+    foreign key (item_id_num) references treat_catalog(item_id_num)
 );
 
