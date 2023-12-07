@@ -7,28 +7,41 @@ CS 325 - Fall 2023
 
 325 Design RS
 
-User(USER_ID, is_customer, is _admin, is_vendor, email, password, fname, lname)
-
-Customer(USER_ID, phone_number, address, city, state, zip_code, country, credit_card)
-	FOREIGN KEY(user_id) REFERENCES User
-
-Admin(USER_ID, is_admin).
-	FOREIGN KEY(user_id) REFERENCES User
-
-Vendor(USER_ID, location, billing_info).
-	FOREIGN KEY(user_id) REFERENCES User
-
-Subscription(USER_ID, start_time, end_time, active)
-
-Order(ORDER_ID_NUM, date_recieved, total_price, item_quantity, item_ID_num, discount)
+User_Account(USER_ID, is_customer, is _admin, is_vendor, email, password, fname, lname)
 
 Treat_Catalog(ITEM_ID_NUM, item_name, item_description, quantity_on_hand, price, quantity_sold)
+
+Customer_Order(ORDER_ID_NUM, USER_ID, date_received)
+	FOREIGN KEY (user_id) REFERENCES User_Account
+
+Customer_Account(USER_ID, phone_number, address, city, state, zip_code, country, credit_card)
+	FOREIGN KEY(user_id) REFERENCES User
+
+Admin_Account(USER_ID, is_admin).
+	FOREIGN KEY(user_id) REFERENCES User
+
+Vendor_Account(USER_ID, location, billing_info).
+	FOREIGN KEY(user_id) REFERENCES User
+
+Subscription(USER_ID, start_time, billing_info)
+	FOREIGN KEY(user_id) REFERENCES User
 
 Treat_Type(ITEM_ID_NUM, treat_type)
 	FOREIGN KEY(item_id_num) REFERENCES Treat_Catalog
 
 Treat_Ingredients(ITEM_ID_NUM, treat_ingredients)
 	FOREIGN KEY(item_id_num) REFERENCES Treat_Catalog
+
+
+Items_In_Order(ORDER_ID_NUM, USER_ID, ITEM_ID_NUM, item_quantity)
+	FOREIGN KEY(order_id_num) REFERENCES Customer_Order
+	FOREIGN KEY(user_id) REFERENCES User_Account
+	FOREIGN KEY(item_id_num) REFERENCES Treat_Catalog
+
+
+
+
+
 
 
 
