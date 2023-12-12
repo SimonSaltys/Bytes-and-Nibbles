@@ -1,80 +1,311 @@
-SPOOL 325result-contents.txt
-PROMPT query 1: Retrieves information about customer orders including the order id customer name and info about the order.
+query 1: Retrieves information about customer orders including the order id customer name and info about the order.
 
-SELECT
-    co.order_id_num,
-    co.date_received,
-    u.fname || ' ' || u.lname AS customer_name,
-    tc.item_name,
-    tc.item_description,
-    io.item_quantity,
-    tc.price
-FROM
-    customer_order co
-JOIN
-    user_account u ON co.user_id = u.user_id
-JOIN
-    items_in_order io ON co.order_id_num = io.order_id_num
-JOIN
-    treat_catalog tc ON io.item_id_num = tc.item_id_num
-WHERE
-    u.is_customer = 'Y'
-ORDER BY
-    co.date_received;
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord001     2023-12-07 13:20:00
+Eve Taylor                      Chocolate Bliss
+Rich and creamy dark chocolate bars.
+            2       2.99
 
 
-PROMPT query 2: Retrieves the customer's name and quantity of a specific treat type that've ordered.
-SELECT u.fname, u.lname, (
-    SELECT SUM(io.item_quantity)
-    FROM items_in_order io
-    JOIN treat_type tt ON io.item_id_num = tt.item_id_num
-    WHERE tt.treat_type = 'Chocolate'
-    AND co.user_id = u.user_id
-) AS total_quantity_ordered
-FROM user_account u
-JOIN customer_order co ON u.user_id = co.user_id;
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord002     2023-12-07 13:20:00
+Bob Smith                       Sour Jummy Worms
+Colorful gummy worms with a tangy sour coating.
+            1        1.5
 
-PROMPT Query 3: Provides a list of treats and their quantity sold
-SELECT item_id_num, SUM(item_quantity) AS total_quantity_sold
-FROM items_in_order
-GROUP BY item_id_num;
 
-PROMPT query 4: Retrieves rows where the user is either a customer or vender and their email is a yahoo or gmail account.
-SELECT *
-FROM user_account
-WHERE (is_customer = 'Y' OR is_vendor = 'Y')
-      AND (email LIKE '%gmail.com' OR email LIKE '%yahoo.com');
-PROMPT qeury 5: Retrieves relevant information about a specified vendor.
-SELECT va.user_id,
-       va.location,
-       va.billing_info,
-       ua.email,
-       ua.fname,
-       ua.lname
-FROM vendor_account va
-JOIN user_account ua ON va.user_id = ua.user_id
-WHERE va.user_id = 'vend002';
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord003     2023-12-07 13:20:00
+Henry Wilson                    Caramel Delight
+Soft, chewy caramels with a hint of sea salt.
+            8       3.25
 
-PROMPT query 6: Retrieves the number of distinct customers who've ordered a specified treat type.
-SELECT COUNT(DISTINCT co.user_id) AS num_customers
-FROM customer_order co
-JOIN items_in_order iio ON co.order_id_num = iio.order_id_num
-JOIN treat_catalog tc ON iio.item_id_num = tc.item_id_num
-JOIN treat_type tt ON tc.item_id_num = tt.item_id_num
-WHERE tt.treat_type = 'specified_treat_type';
 
-PROMPT query 7: Returns the average cost of items that customers have bought
-SELECT AVG(tc.price) AS average_order_price
-FROM customer_order co
-JOIN items_in_order iio ON co.order_id_num = iio.order_id_num
-JOIN treat_catalog tc ON iio.item_id_num = tc.item_id_num;
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord004     2023-12-07 13:20:00
+David Lee                       Minty Fresh Mints
+Refreshing peppermint candies that soothe the throat.
+            1          1
 
-PROMPT query 8: Returns the item id number of the most popular item
-SELECT item_id_num
-FROM (
-    SELECT item_id_num, RANK() OVER (ORDER BY COUNT(*) DESC) AS rnk
-    FROM items_in_order
-    GROUP BY item_id_num
-)
-WHERE rnk = 1;
-SPOOL OFF;
+
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord010     2023-12-07 13:20:00
+Irene Moore                     Peanut Brittle
+Crunchy, buttery peanut brittle with a caramelized sugar coating.
+            4       3.75
+
+
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord006     2023-12-07 13:20:00
+Grace Davis                     Fruit Medley Gummies
+Assorted fruit-flavored gummies made with real fruit juice.
+            3          2
+
+
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord007     2023-12-07 13:20:00
+Carol Jones                     Lemon Drops
+Hard candies with a sweet and tangy lemon flavor.
+           10        1.2
+
+
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord008     2023-12-07 13:20:00
+David Lee                       Spicy Chili Chips
+Crunchy potato chips with a bold and spicy chili seasoning.
+            1       2.75
+
+
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord009     2023-12-07 13:20:00
+Eve Taylor                      Hazelnut Truffle
+Decadent truffles with a smooth hazelnut filling.
+            6          5
+
+
+ORDER_ID_N DATE_RECEIVED
+---------- ----------------------------------------
+CUSTOMER_NAME                   ITEM_NAME
+------------------------------- ------------------------------
+ITEM_DESCRIPTION
+--------------------------------------------------------------------------------
+ITEM_QUANTITY      PRICE
+------------- ----------
+ord005     2023-12-07 13:20:00
+Alice Brown                     Crunchy Almond Cookies
+Homemade cookies with crunchy almonds and a hint of vanilla.
+            7        4.5
+
+
+10 rows selected.
+
+query 2: Retrieves the names of customers who've ordered a specific treat type
+
+FNAME           LNAME
+--------------- ---------------
+Carol           Jones
+David           Lee
+
+Query 3: Provides a list of treats and their quantity sold
+
+ITEM_ID_NU TOTAL_QUANTITY_SOLD
+---------- -------------------
+item0003                     8
+item0005                     7
+item0006                     3
+item0007                    10
+item0008                     1
+item0004                     1
+item0009                     6
+item0002                     1
+item0010                     4
+item0001                     2
+
+10 rows selected.
+
+query 4: Retrieves rows where the user is either a customer or vender and their email is from 'example.com'
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+cust001    Y N N cust001@example.com            pass001
+Alice           Brown
+
+cust002    Y N N cust002@example.com            pass002
+Bob             Smith
+
+cust003    Y N N cust003@example.com            pass003
+Carol           Jones
+
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+cust004    Y N N cust004@example.com            pass004
+David           Lee
+
+cust005    Y N N cust005@example.com            pass005
+Eve             Taylor
+
+cust006    Y N N cust006@example.com            pass006
+Frank           Miller
+
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+cust007    Y N N cust007@example.com            pass007
+Grace           Davis
+
+cust008    Y N N cust008@example.com            pass008
+Henry           Wilson
+
+cust009    Y N N cust009@example.com            pass009
+Irene           Moore
+
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+cust010    Y N N cust010@example.com            pass010
+Jack            White
+
+vend001    N N Y vend001@example.com            passv001
+Keith           Adams
+
+vend002    N N Y vend002@example.com            passv002
+Linda           Baker
+
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+vend003    N N Y vend003@example.com            passv003
+Mike            Clark
+
+vend004    N N Y vend004@example.com            passv004
+Nina            Dunn
+
+vend005    N N Y vend005@example.com            passv005
+Oscar           Evans
+
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+vend006    N N Y vend006@example.com            passv006
+Patty           Floyd
+
+vend007    N N Y vend007@example.com            passv007
+Quincy          Grant
+
+vend008    N N Y vend008@example.com            passv008
+Rachel          Hill
+
+
+USER_ID    I I I EMAIL                          PASSWORD
+---------- - - - ------------------------------ -------------------------
+FNAME           LNAME
+--------------- ---------------
+vend009    N N Y vend009@example.com            passv009
+Steve           Irwin
+
+vend010    N N Y vend010@example.com            passv010
+Tina            Jones
+
+
+20 rows selected.
+
+qeury 5: Retrieves relevant information about a specified vendor.
+
+USER_ID
+----------
+LOCATION
+--------------------------------------------------------------------------------
+BILLING_INFO
+--------------------------------------------------------------------------------
+EMAIL                          FNAME           LNAME
+------------------------------ --------------- ---------------
+vend002
+456 Trade Ave, Market Town, StateB
+Billing Acct: 002-DEF-456
+vend002@example.com            Linda           Baker
+
+
+query 6: Retrieves the number of distinct customers who've ordered a specified treat type.
+
+NUM_CUSTOMERS
+-------------
+            2
+
+query 7: Returns the average cost of items that customers have bought
+
+AVERAGE_ORDER_PRICE
+-------------------
+              2.794
+
+query 8: Ranks items based off of how often theyve been purchased.
+
+ITEM_ID_NU
+----------
+item0003
+item0005
+item0006
+item0007
+item0008
+item0004
+item0009
+item0002
+item0010
+item0001
+
+10 rows selected.
