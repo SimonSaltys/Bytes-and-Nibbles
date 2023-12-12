@@ -1,4 +1,5 @@
-POOL 325result-contents.txt
+
+SPOOL 325result-contents.txt
 PROMPT query 1: Retrieves information about customer orders including the order id customer name and info about the order.
 
 SELECT
@@ -23,16 +24,17 @@ ORDER BY
     co.date_received;
 
 
-PROMPT query 2: Retrieves the customer's name and quantity of a specific treat type that've ordered.
-SELECT u.fname, u.lname, (
-    SELECT SUM(io.item_quantity)
-    FROM items_in_order io
+PROMPT query 2: Retrieves the names of customers who've ordered a specific treat type
+SELECT u.fname, u.lname
+FROM user_account u
+WHERE u.user_id IN (
+    SELECT co.user_id
+    FROM customer_order co
+    JOIN items_in_order io ON co.order_id_num = io.order_id_num
     JOIN treat_type tt ON io.item_id_num = tt.item_id_num
     WHERE tt.treat_type = 'Hard Candy'
-    AND co.user_id = u.user_id
-) AS total_quantity_ordered
-FROM user_account u
-JOIN customer_order co ON u.user_id = co.user_id;
+);
+
 
 PROMPT Query 3: Provides a list of treats and their quantity sold
 SELECT item_id_num, SUM(item_quantity) AS total_quantity_sold
@@ -61,7 +63,7 @@ FROM customer_order co
 JOIN items_in_order iio ON co.order_id_num = iio.order_id_num
 JOIN treat_catalog tc ON iio.item_id_num = tc.item_id_num
 JOIN treat_type tt ON tc.item_id_num = tt.item_id_num
-WHERE tt.treat_type = 'specified_treat_type';
+WHERE tt.treat_type = 'Hard Candy';
 
 PROMPT query 7: Returns the average cost of items that customers have bought
 SELECT AVG(tc.price) AS average_order_price
@@ -78,4 +80,3 @@ FROM (
 )
 WHERE rnk = 1;
 SPOOL OFF;
-
