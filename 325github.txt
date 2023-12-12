@@ -1,0 +1,5 @@
+Bytes and Nibbles
+Griffin Jarrell-Desch, Natalie Oulman, Simon Saltikov, Shawn Zereh, Brian Pinkernell| December 11, 2023
+CS 325 - Fall 2023
+Last modified 12/11/23
+https://github.com/OnlyTableSalt/Bytes-and-Nibbles
